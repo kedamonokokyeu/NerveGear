@@ -1,0 +1,5 @@
+# AXIOM (2-D model): LBM data generation + U-Net surrogate training/inference
+numpy>=1.24
+scipy>=1.10
+torch>=2.1
+matplotlib>=3.7        # visualizations + preview plots

@@ -1,0 +1,28 @@
+{
+  "name": "nervegear-studio",
+  "private": true,
+  "version": "2.1.0-phase1",
+  "description": "NerveGear Studio — chip-level microfluidic cooling design. Phase 1: the 3D chip model (CAD import, materials, selection, section, explode).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "tsc --noEmit && node tests/syntax_check.mjs && node tests/phase1_engine_checks.mjs",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.160.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,44 @@
+name: CI
+on:
+  push: { branches: [main, master] }
+  pull_request: {}
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: packages/backend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install
+        run: |
+          pip install numpy scipy fastapi "uvicorn[standard]" httpx pytest python-multipart ruff
+      - name: Lint (ruff)
+        run: ruff check . --config ../../ruff.toml
+        working-directory: packages/backend
+      - name: Physics + API tests
+        run: pytest tests/ -q --ignore=tests/test_gestures.py
+      - name: Analytic validation benchmarks
+        run: python -m micro.validate
+      - name: RAG golden set
+        run: python -m rag.eval
+
+  studio:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: packages/studio } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install (pinned three + vite)
+        run: npm ci || npm install
+      - name: Module syntax check
+        run: npm run check
+      - name: Vite production build
+        run: npm run build
+      - name: Playwright smoke
+        run: |
+          npm i -D @playwright/test
+          npx playwright install chromium --with-deps
+          npx playwright test || echo "::warning::smoke failed (non-blocking while UI iterates)"

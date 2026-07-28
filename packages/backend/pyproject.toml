@@ -1,0 +1,37 @@
+[project]
+name = "nervegear-3d"
+version = "0.1.0"
+description = "Gesture-controlled spatial workspace for NerveGear: hand tracking, CAD ingestion, and a CFD-surrogate bridge."
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.24",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+camera = ["opencv-python>=4.9", "mediapipe>=0.10.9"]
+cad = ["trimesh>=4.0", "scipy>=1.10", "shapely>=2.0"]
+rag = ["sentence-transformers>=2.2", "python-docx>=1.1"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+# Focus on real-bug checks (pyflakes F: unused/undefined; bugbear B: footguns).
+# Pure-style rules (line length, import order, semicolons) are intentionally off —
+# this is hand-written code, not autoformatted.
+select = ["F", "B"]
+ignore = [
+    "B008",   # FastAPI uses `File()`/`Depends()` as default args by design
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B"]

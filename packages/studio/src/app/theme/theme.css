@@ -1,0 +1,53 @@
+/* NerveGear Studio theme variables. Values are locked — see tokens.ts / build prompt §4.5. */
+
+[data-theme='dark'] {
+  --bg-app: #0e1116;
+  --bg-panel: #151a21;
+  --bg-elev: #1b222b;
+  --bg-input: #10151b;
+  --border: #262e39;
+  --border-strong: #323c49;
+  --text: #e6ebf2;
+  --text-2: #9aa7b8;
+  --text-muted: #6b7787;
+  --accent: #3b82f6;
+  --accent-hover: #2f6fd6;
+  --selection: #38bdf8;
+  --danger: #ef4444;
+  --ok: #22c55e;
+}
+
+[data-theme='light'] {
+  --bg-app: #f5f7fa;
+  --bg-panel: #ffffff;
+  --bg-elev: #eef1f5;
+  --bg-input: #ffffff;
+  --border: #d4dae2;
+  --border-strong: #b8c1cd;
+  --text: #12181f;
+  --text-2: #4a5666;
+  --text-muted: #7a8494;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --selection: #0ea5e9;
+  --danger: #dc2626;
+  --ok: #16a34a;
+}
+
+:root {
+  /* Material legend (shared across themes). Color = material. */
+  --mat-carrier-cu: #c77f3f;
+  --mat-silicon: #7d93ad;
+  --mat-coolant: #1fb6e0;
+  --mat-lid: #9fb6c9;
+  --mat-dielectric-sio2: #5b6b7f;
+  --mat-solder-tim: #d9a441;
+
+  --font-sans: ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Consolas, monospace;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+}

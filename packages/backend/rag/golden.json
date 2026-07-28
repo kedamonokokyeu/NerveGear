@@ -1,0 +1,20 @@
+{
+  "description": "Retrieval gold set: question -> substring the top-k sources must contain. Run via rag/eval.py:run_golden().",
+  "k": 4,
+  "cases": [
+    ["What is the Reynolds number and when is flow laminar?", "microfluidics"],
+    ["What does fRe mean for a rectangular duct?", "microfluidics"],
+    ["What Nusselt number does a square duct have?", "microfluidics"],
+    ["What are the DRIE etch rules NerveGear enforces?", "microfluidics"],
+    ["Why do channels far from the inlet run hotter?", "microfluidics"],
+    ["What is Murray's law?", "microfluidics"],
+    ["What does the confidence score mean?", "microfluidics"],
+    ["What is floating silicon?", "microfluidics"],
+    ["What units does the solve contract use?", "contract"],
+    ["Which field says whether the reduced model or the 3D solver ran?", "contract"],
+    ["What is a signed distance field?", "glossary"],
+    ["What is a keep-out zone?", "microfluidics"],
+    ["How is junction temperature decomposed?", "microfluidics"],
+    ["What is the pumping power and COP?", "microfluidics"]
+  ]
+}

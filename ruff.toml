@@ -1,0 +1,16 @@
+# Repo-wide Python lint (build plan, Phase 4). Focused: real bugs > style noise.
+line-length = 100
+target-version = "py310"
+
+[lint]
+select = ["E", "F", "W", "B", "NPY", "RUF"]
+ignore = [
+  "E501",    # long lines: docstrings/comments explain physics; keep them
+  "E731",    # lambdas as tiny unit converters are idiomatic here
+  "E741",    # l/I names appear in math contexts deliberately
+  "B008",    # FastAPI Depends/File defaults
+  "RUF001", "RUF002", "RUF003",  # unicode µ/°/— in strings+comments is intentional
+]
+
+[lint.per-file-ignores]
+"**/tests/*" = ["B011"]

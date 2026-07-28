@@ -1,0 +1,727 @@
+/* NerveGear Studio — application chrome. Enterprise register: structure over
+   aesthetics. Base 12px, pane headers 11px uppercase tracked. */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── shell grid: 44px commandbar / body / 26px statusbar ─────────────── */
+.shell {
+  display: grid;
+  grid-template-rows: 44px 1fr 26px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-app);
+}
+
+.shell__body {
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.shell__col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.shell__col--left,
+.shell__col--right {
+  flex: 0 0 auto;
+  background: var(--bg-panel);
+}
+
+.shell__col--center {
+  flex: 1 1 auto;
+  position: relative;
+  background: var(--bg-app);
+}
+
+.shell__right-top {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.shell__right-bottom {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── command bar ─────────────────────────────────────────────────────── */
+.commandbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-3);
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.commandbar__brand {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-right: var(--sp-1);
+  user-select: none;
+}
+
+.commandbar__divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+}
+
+.commandbar__spacer {
+  flex: 1;
+}
+
+.cmd-btn {
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-2);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.cmd-btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--bg-elev);
+}
+
+.cmd-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.cmd-btn:focus-visible,
+.segmented__btn:focus-visible,
+.pane__chevron:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.segmented__btn {
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.segmented__btn:last-child {
+  border-right: none;
+}
+
+.segmented__btn:hover {
+  color: var(--text);
+  background: var(--bg-elev);
+}
+
+.segmented__btn--active {
+  color: var(--text);
+  background: var(--bg-elev);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+/* ── status bar ──────────────────────────────────────────────────────── */
+.statusbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: 0 var(--sp-3);
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.statusbar__field b {
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.statusbar__spacer {
+  flex: 1;
+}
+
+.statusbar__fps {
+  font-family: var(--font-mono);
+}
+
+/* ── panes ───────────────────────────────────────────────────────────── */
+.pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--bg-panel);
+}
+
+.pane__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+
+.pane__title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.pane__chevron {
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+  cursor: pointer;
+}
+
+.pane__chevron:hover {
+  color: var(--text);
+}
+
+.pane__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--sp-3);
+}
+
+/* collapsed pane rail */
+.pane-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 18px;
+  flex: 1 1 auto;
+  padding-top: var(--sp-2);
+  background: var(--bg-panel);
+  cursor: pointer;
+  user-select: none;
+}
+
+.pane-rail--top {
+  flex-direction: row;
+  width: auto;
+  height: 18px;
+  padding: 0 var(--sp-2);
+  align-items: center;
+}
+
+.pane-rail:hover {
+  background: var(--bg-elev);
+}
+
+.pane-rail__chevron {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.pane-rail__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  writing-mode: vertical-rl;
+}
+
+.pane-rail--bottom {
+  flex-direction: row;
+  width: auto;
+  height: 18px;
+  padding: 0 var(--sp-2);
+  align-items: center;
+}
+
+.pane-rail--top .pane-rail__label,
+.pane-rail--bottom .pane-rail__label {
+  writing-mode: horizontal-tb;
+}
+
+.pane__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── splitters ───────────────────────────────────────────────────────── */
+.splitter {
+  flex: 0 0 auto;
+  background: var(--border);
+  transition: background 80ms linear;
+  touch-action: none;
+}
+
+.splitter--vertical {
+  width: 5px;
+  cursor: col-resize;
+}
+
+.splitter--horizontal {
+  height: 5px;
+  cursor: row-resize;
+}
+
+.splitter:hover:not(.splitter--disabled),
+.splitter--active {
+  background: var(--accent);
+}
+
+.splitter--disabled {
+  cursor: default;
+}
+
+/* ── empty states ────────────────────────────────────────────────────── */
+.empty-state {
+  padding: var(--sp-4) var(--sp-2);
+  text-align: left;
+}
+
+.empty-state__title {
+  font-size: 12px;
+  color: var(--text-2);
+  margin-bottom: var(--sp-1);
+}
+
+.empty-state__hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── typed-input kit ─────────────────────────────────────────────────── */
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 27px;
+  margin-bottom: 3px;
+}
+
+.field-label {
+  flex: 0 0 45%;
+  font-size: 11px;
+  color: var(--text-2);
+  user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.field-box {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  height: 26px;
+  padding-right: 6px;
+}
+
+.field-box:focus-within {
+  border-color: var(--accent);
+}
+
+.field-box--invalid {
+  border-color: var(--danger);
+}
+
+.field-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 6px;
+  height: 100%;
+}
+
+.field-input--num {
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+.field-input--select {
+  appearance: auto;
+  cursor: pointer;
+  padding-right: 0;
+}
+
+.field-unit {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 4px;
+  user-select: none;
+}
+
+.field-row--readout .readout-value {
+  flex: 1 1 auto;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  padding-right: 6px;
+}
+
+/* ── properties pane ─────────────────────────────────────────────────── */
+.props__group {
+  margin-bottom: var(--sp-4);
+}
+
+.props__group-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+  margin-bottom: var(--sp-2);
+  user-select: none;
+}
+
+.props__note {
+  font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: var(--sp-2);
+}
+
+/* ── viewport ────────────────────────────────────────────────────────── */
+.viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.viewport__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.viewport__canvas canvas {
+  display: block;
+}
+
+.viewport__hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.viewport__hud-corner {
+  position: absolute;
+  /* Reserved mount points: axis triad (bl), scale bar (br),
+     material legend (tr), view label (tl). Empty in Phase 0. */
+}
+
+.viewport__hud-corner--tl { top: var(--sp-3); left: var(--sp-3); }
+.viewport__hud-corner--tr { top: var(--sp-3); right: var(--sp-3); }
+.viewport__hud-corner--bl { bottom: var(--sp-3); left: var(--sp-3); }
+.viewport__hud-corner--br { bottom: var(--sp-3); right: var(--sp-3); }
+
+/* standard-views gizmo (interactive; sits above the pointer-through HUD) */
+.viewgizmo {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding: var(--sp-2);
+  background: color-mix(in srgb, var(--bg-panel) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  user-select: none;
+}
+
+.viewgizmo__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  grid-auto-rows: 22px;
+  gap: 2px;
+}
+
+.viewgizmo__row {
+  display: flex;
+  gap: 2px;
+}
+
+.viewgizmo__gap {
+  display: block;
+}
+
+.viewgizmo__btn {
+  font: inherit;
+  font-size: 10px;
+  color: var(--text-2);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0;
+  height: 22px;
+  cursor: pointer;
+}
+
+.viewgizmo__row .viewgizmo__btn {
+  flex: 1 1 auto;
+}
+
+.viewgizmo__btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.viewport__hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--bg-panel) 78%, transparent);
+  border-radius: 3px;
+  padding: 2px 6px;
+  user-select: none;
+}
+
+/* ── structure pane: the flat parts list (Phase 1) ───────────────────── */
+.structure {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.structure__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-2);
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 4px 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.structure__row:hover {
+  color: var(--text);
+  background: var(--bg-elev);
+}
+
+.structure__row--selected {
+  color: var(--text);
+  background: var(--bg-elev);
+  border-color: var(--selection);
+}
+
+.structure__swatch {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--border-strong);
+}
+
+.structure__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── material legend overlay (Phase 1) ───────────────────────────────── */
+.legend {
+  pointer-events: auto;
+  min-width: 140px;
+  padding: var(--sp-2) var(--sp-3);
+  background: color-mix(in srgb, var(--bg-panel) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  user-select: none;
+}
+
+.legend__title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-1);
+}
+
+.legend__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 1px 0;
+}
+
+.legend__swatch {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--border-strong);
+}
+
+.legend__label {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* ── command bar: inline tool controls (Section / Explode) ───────────── */
+.commandbar__tool-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* The typed-input kit is built for panes; inline in the bar the rows need
+   fixed widths and no bottom margin. */
+.commandbar__tool-controls .field-row {
+  margin-bottom: 0;
+  height: auto;
+}
+
+.commandbar__tool-controls .field-label {
+  flex: 0 0 auto;
+}
+
+.commandbar__tool-controls .field-box {
+  width: 110px;
+  flex: 0 0 auto;
+}
+
+/* ── import: drag-drop overlay + review dialog (Phase 1) ─────────────── */
+.drop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bg-app) 72%, transparent);
+  border: 2px dashed var(--accent);
+  pointer-events: none;
+}
+
+.drop-overlay__label {
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: var(--sp-2) var(--sp-4);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bg-app) 62%, transparent);
+}
+
+.modal {
+  width: 380px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: var(--sp-4);
+}
+
+.modal__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--sp-1);
+}
+
+.modal__body {
+  font-size: 11px;
+  color: var(--text-2);
+  margin-bottom: var(--sp-3);
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+/* ── status bar: import errors get the danger color ──────────────────── */
+.statusbar__error {
+  color: var(--danger);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 40vw;
+}
+
+/* scrollbars — thin, neutral */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
